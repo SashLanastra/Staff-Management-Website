@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+    scroll-behavior: smooth;
+}
+
+#modal-container::-webkit-scrollbar {
+    width: .2rem;
+}
+
+#modal-container::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.301);
+    border-radius: 25px;
+}
+
+body {
+    font-family: 'Clash Display', sans-serif;
+    background-color: #E8DAD0;  
+}
+
+
+#bg-scroll-disable {
+    height: 100vh;
+    overflow: hidden;
+}
+
+#modal-bg {
+    overflow: hidden;
+}
+
+.emp-img {
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    height: fit-content; 
+}
+
+
+/*------------lg screen sidebar----------*/
+
+.sidebar-nav ul li a {
+    display: block;
+    padding: 1rem 2rem;
+} 
+
+
+
+.sidebar-nav ul li a:hover,
+.sidebar-nav ul li a:focus {
+    background-color: #C4B0A3;
+    color: rgba(0, 0, 0, 0.692);
+    font-weight: bold;
+}
+
+ /*-------popupsidebar--------*/
+.popup-nav ul li a{
+    padding: .5rem 2rem;
+    display: block;
+}
+
+.popup-nav ul li a:hover,
+.popup-nav ul li a:focus {
+    background-color: #C4B0A3;
+    color: rgba(0, 0, 0, 0.692);
+}
+
+.popup-nav {
+    border: 1px solid #e8dad062;
+    top: 0;
+    left: 0;
+    padding-top: 82px;
+}
+
+
+
+/*--------Form Card------*/
+
+.formCard {
+    background-color: #00000080;
+    height: 500px;
+}
+
+@media screen and (max-width:499) {
+    .cell-gen-dob {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+
+@media screen and (min-width:768px)  {
+    .formCard {
+        height: 768px;
+    }
+}
+
+@media screen and (min-width:1024px) {
+    .site-wrapper {
+        display: grid;
+        grid-template-columns:1fr;
+    }
+}
+
+
