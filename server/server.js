@@ -21,10 +21,11 @@ app.use(express.json());
 app.use(express.static('public'));
 
 const con = mysql.createConnection({
-    host: "127.0.0.1",
+   host: "127.0.0.1",
     user: "root",
     password: "",
-    database: "staff management"
+    database: "staff management",
+port: "3306"
 })
 
 const storage = multer.diskStorage({
