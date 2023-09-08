@@ -25,7 +25,7 @@ const con = mysql.createConnection({
     user: "root",
     password: "",
     database: "staff management",
-    port: "3306"
+    port: ""
 })
 
 const storage = multer.diskStorage({
