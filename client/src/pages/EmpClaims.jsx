@@ -1,7 +1,8 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { Button } from '../components/Button'
 import { ClaimIndentifier } from '../components/ClaimIndentifier'
+import { FormInput } from '../components/FormInput'
 
 export const EmpClaims = () => {
     const [claims, setClaims] = useState([])
@@ -25,11 +26,20 @@ export const EmpClaims = () => {
 
     console.log(claims)
 
+    // const filteredItems = useMemo(() => {
+    //     return claims.filter(item => {
+    //         return item.firstName
+    //     })
+    // },[claims, query])
+
     return (
         <section className='flex flex-col gap-8 max-w-4xl mx-auto'>
             <div className='flex flex-col gap-8 mt-8 sm:mt-24 mx-8'>
                 
-                <Button className='bg-secondary'>Mark All As Paid</Button>
+                <FormInput 
+                    className='bg-white border-none'
+                    placeholder='Search Employee Claim. . .'
+                />
             </div>
             <div className='border border-secondary rounded-lg shadow-lg mx-8'>
                 <table className='w-full'>
@@ -50,14 +60,14 @@ export const EmpClaims = () => {
                         {claims.map((singleclaim, index) => {
                             return (
                                 <tr key={index} className='border-b border-secondary'>
-                                    <td className='p-2 border-r border-secondary'>
+                                    <td className='py-2 border-r border-secondary'>
                                         <ClaimIndentifier singleclaim={singleclaim} />
                                     </td>
                                     <td className='hidden lg:table-cell border-r text-center border-secondary'>
-                                        {singleclaim.claimDate}
+                                        {singleclaim.date}
                                     </td>
                                     <td className='font-bold text-center'>
-                                        R{singleclaim.claim}
+                                        R{singleclaim.amount}
                                     </td>
                                 </tr>
                             )

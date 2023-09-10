@@ -11,8 +11,8 @@ export const Claims = () => {
     const [claimInfo, setClaimInfo] = useState({
         employeeId: id,
         details: '',
-        claim: '',
-        claimDate: '',
+        amount: '',
+        date: '',
         proof: ''
     })
 
@@ -30,8 +30,8 @@ export const Claims = () => {
         const formData = new FormData();
         formData.append("employeeId", claimInfo.employeeId);
         formData.append("details", claimInfo.details);
-        formData.append("claim", claimInfo.claim);
-        formData.append("claimDate", claimInfo.claimDate);
+        formData.append("amount", claimInfo.amount);
+        formData.append("date", claimInfo.date);
         formData.append("proof", claimInfo.proof);
         axios.post('http://localhost:4000/createClaim', formData)
         .then(res => {
@@ -68,25 +68,25 @@ export const Claims = () => {
                         onChange={handleChange}
 
                     />
-                    <label htmlFor="claim" className='text-white'>Claim Amount</label>
+                    <label htmlFor="amount" className='text-white'>Claim Amount</label>
                     <FormInput
-                        id="claim"
+                        id="amount"
                         type="text"
                         placeholder="Enter Claim Amount. . ."
                         required
-                        name="claim"
+                        name="amount"
                         autoComplete='off'
-                        value={claimInfo.claim}
+                        value={claimInfo.amount}
                         onChange={handleChange}
 
                     />
-                    <label htmlFor="claimDate" className='text-white'>Claim Date</label>
+                    <label htmlFor="date" className='text-white'>Claim Date</label>
                     <FormInput
-                        id="claimDate"
+                        id="date"
                         type="date"
                         required
-                        name="claimDate"
-                        value={claimInfo.claimDate}
+                        name="date"
+                        value={claimInfo.date}
                         onChange={handleChange}
                     />
                     <label htmlFor="proof" className='text-white'>Attachment</label>

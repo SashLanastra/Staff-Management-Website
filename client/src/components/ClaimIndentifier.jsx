@@ -23,7 +23,7 @@ export const ClaimIndentifier = ({ singleclaim }) => {
 
     return (
         <Link to={`/claimsdetails/${claimId.id}`}>
-            <div className='flex gap-4 items-center justify-start ml-8'>
+            <div className='flex gap-4 items-center justify-center sm:justify-start sm:ml-8'>
                 <img src={`http://localhost:4000/images/${claimId.avatarUrl}`} alt="Employee Avatar" className='emp-img rounded-full w-12' />
                 <div>
                     <p className='hidden sm:block'>{claimId.firstName} {claimId.lastName}</p>

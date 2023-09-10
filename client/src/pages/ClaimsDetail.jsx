@@ -57,8 +57,8 @@ export const ClaimsDetail = () => {
                             return (
                                 <tr key={index} className='border-t border-secondary'>
                                     <td className='px-3 py-2 rounded-bl-lg border-r border-secondary'>{claim.details}</td>
-                                    <td className='px-3 py-2 border-r border-secondary'>{claim.claim}</td>
-                                    <td className='hidden sm:table-cell px-3 py-2 border-r border-secondary text-center'>{claim.claimDate}</td>
+                                    <td className='px-3 py-2 border-r border-secondary text-center'>R{claim.amount}</td>
+                                    <td className='hidden sm:table-cell px-3 py-2 border-r border-secondary text-center'>{claim.date}</td>
                                     <td className=' rounded-br-lg'>
                                         <a href={`http://localhost:4000/claimages/${claim.proof}`} target='_blank' className='block w-full py-4'>
                                             <img src={file} alt="" className='mx-auto' />
