@@ -21,10 +21,10 @@ app.use(express.json());
 app.use(express.static('public'));
 
 const con = mysql.createConnection({
-    host: "0.0.0.0",
+    host: "localhost",
     user: "root",
-    password: "",
-    database: "staff management"
+    password: "Edwardteach25",
+    database: "staffmanagement"
 })
 
 const storage = multer.diskStorage({
@@ -59,6 +59,10 @@ con.connect(function (err) {
     } else {
         console.log("Connected")
     }
+})
+
+app.get("/", (req, res) => {
+    res.json("This is ther server")
 })
 
 app.get('/getemployees', (req, res) => {
@@ -142,7 +146,7 @@ app.get('/dashboard', verifyUser, (req, res) => {
 })
 
 app.get('/admincount', (req, res) => {
-    const sql = "SELECT count(id) as admin from user";
+    const sql = "SELECT count(id) as admin from adminuser";
     con.query(sql, (err, result) => {
         if (err) return res.json({ Error: "Error in running query" })
         return res.json({ Status: "Success", Result: result })
@@ -179,7 +183,7 @@ app.get('/claimsum/:id', (req, res) => {
 
 
 app.post('/login', (req, res) => {
-    const sql = "SELECT * FROM user where email = ? AND password = ?";
+    const sql = "SELECT * FROM adminuser where email = ? AND password = ?";
     con.query(sql, [req.body.email, req.body.password], (err, result) => {
         if (err) return res.json({ Status: "Error", Error: "Error in running query" });
         if (result.length > 0) {
@@ -245,17 +249,17 @@ app.post('/create', upload.single('avatarUrl'), (req, res) => {
 })
 
 app.post('/createClaim', claimupload.single('proof'), (req, res) => {
-    const sql = "INSERT INTO claims( `employeeId`, `details`, `claim`, `claimDate`, `proof`) VALUES(?) ";
+    const sql = "INSERT INTO claims( `employeeId`, `details`, `amount`, `date`, `proof`) VALUES(?) ";
     const values = [
         req.body.employeeId, 
         req.body.details,
-        req.body.claim, 
-        req.body.claimDate, 
+        req.body.amount, 
+        req.body.date, 
         req.file.filename,
     ]
     console.log(values)
     con.query(sql, [values], (err, result) => {
-        if(err) return res.json({Error: "Error in creating claim"})
+        if(err) return res.json({Error: err})
         return res.json({Status: "Success"})
     })
 })
