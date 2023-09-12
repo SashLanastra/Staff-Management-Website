@@ -11,7 +11,7 @@ import 'dotenv/config'
 const app = express();
 app.use(cors(
     {
-        origin: ["http://localhost:5173"],
+        origin: ["https://friendly-salamander-0e3294.netlify.app"],
         methods: ["POST", "GET", "PUT", "DELETE"],
         credentials: true
     }
