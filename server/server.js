@@ -6,25 +6,27 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import multer from 'multer';
 import path from 'path';
-
+import 'dotenv/config'
 
 const app = express();
 app.use(cors(
     {
         origin: ["http://localhost:5173"],
-        methods: ["POST", "GET", "PUT"],
+        methods: ["POST", "GET", "PUT", "DELETE"],
         credentials: true
     }
 ));
+
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.static('public'));
 
 const con = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "Edwardteach25",
-    database: "staffmanagement"
+    host: `${process.env.DB_HOST}`,
+    user: `${process.env.DB_USER}`,
+    password: `${process.env.DB_PASSWORD}`,
+    database: `${process.env.DB_NAME}`,
+    port: `${process.env.DB_PORT}`
 })
 
 const storage = multer.diskStorage({
@@ -57,7 +59,7 @@ con.connect(function (err) {
     if (err) {
         console.log(err)
     } else {
-        console.log("Connected")
+        console.log("Connected to DB")
     }
 })
 
@@ -107,7 +109,6 @@ app.put('/update/:id', (req, res) => {
         return res.json({ Status: "Success", Result: result })
     })
 })
-
 
 app.put('/updateisBirthday/:id', (req, res) => {
     const id = req.params.id;
@@ -169,7 +170,6 @@ app.get('/salarycount', (req, res) => {
     })
 })
 
-
 app.get('/claimsum/:id', (req, res) => {
     const employeeId = req.params.id
     const sql = "SELECT sum(claim) as claimsum from claims WHERE employeeId= ?";
@@ -178,9 +178,6 @@ app.get('/claimsum/:id', (req, res) => {
         return res.json({ Status: "Success", Result: result })
     })
 })
-
-
-
 
 app.post('/login', (req, res) => {
     const sql = "SELECT * FROM adminuser where email = ? AND password = ?";
@@ -264,8 +261,8 @@ app.post('/createClaim', claimupload.single('proof'), (req, res) => {
     })
 })
 
-app.listen(4000, () => {
-    console.log("Running")
+app.listen(process.env.PORT, () => {
+    console.log(`Running on port : ${process.env.PORT}`)
 })
 
 
