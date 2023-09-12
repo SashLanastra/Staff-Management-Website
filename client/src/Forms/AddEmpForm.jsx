@@ -54,6 +54,7 @@ export const AddEmpForm = () => {
         formdata.append("avatarUrl", newEmpData.avatarUrl);
         axios.post('http://localhost:4000/create', formdata)
         .then(res => {
+            console.log(res)
             if(res.data.Status === 'Success') {
                 window.location.reload(true);
                 formFalse();
