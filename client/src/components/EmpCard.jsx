@@ -8,7 +8,7 @@ export const EmpCard = ({ employee }) => {
             <div className='bg-unicolor w-full max-w-md py-4 px-8 rounded-lg shadow-lg'>
                 <Link to={`/staffdetails/${employee.id}`} className='flex items-center gap-8'>
                 
-                    <img src={`http://localhost:4000/images/${employee.avatarUrl}`} alt="Employee Avatar"
+                    <img src={`https://hr-systema.onrender.com/images/${employee.avatarUrl}`} alt="Employee Avatar"
                         className=' border border-primary w-20 emp-img rounded-full'
                     />
                 

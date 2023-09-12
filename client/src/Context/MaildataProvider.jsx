@@ -13,7 +13,7 @@ export const MailProvider = ({children}) => {
     })
 
     const handleMailDetails = (id) => {
-        axios.get(`http://localhost:4000/get/${id}`)
+        axios.get(`https://hr-systema.onrender.com/get/${id}`)
             .then(res => {
 
                 if (res.data.Status === 'Success') {

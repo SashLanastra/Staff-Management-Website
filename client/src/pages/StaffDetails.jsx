@@ -16,7 +16,7 @@ export const StaffDetails = () => {
     const navigate = useNavigate()
 
     useEffect(() => {
-        axios.get(`http://localhost:4000/get/${id}`)
+        axios.get(`https://hr-systema.onrender.com/get/${id}`)
             .then(res => {
                 if(res.data.Status === 'Success') {
                     setEmployeeData(res.data.Result[0])
@@ -29,7 +29,7 @@ export const StaffDetails = () => {
     }, [])
 
     const handleDelete = () => {
-        axios.delete(`http://localhost:4000/delete/${id}`)
+        axios.delete(`https://hr-systema.onrender.com/delete/${id}`)
         .then(res => {
             if(res.data.Status === 'Success') {
                 navigate('/staff')
@@ -42,7 +42,7 @@ export const StaffDetails = () => {
     }
     return (
         <section className='my-8 lg:my-24 flex flex-col items-center gap-8'>
-            <img src={`http://localhost:4000/images/${employeeData.avatarUrl}`} alt="Employee Image" 
+            <img src={`https://hr-systema.onrender.com/images/${employeeData.avatarUrl}`} alt="Employee Image" 
             className='emp-img w-52 rounded-full'
             />
             <div className='flex gap-4 px-4 sm:w-fit'>

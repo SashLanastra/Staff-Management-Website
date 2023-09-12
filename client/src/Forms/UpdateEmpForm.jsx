@@ -29,7 +29,7 @@ export const UpdateEmpForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.put(`http://localhost:4000/update/${id}`, updateData)
+        axios.put(`https://hr-systema.onrender.com/update/${id}`, updateData)
             .then(res => {
                 if (res.data.Status === "Success") {
                     window.location.reload(true)
@@ -42,7 +42,7 @@ export const UpdateEmpForm = () => {
     }
 
     useEffect(() => {
-        axios.get(`http://localhost:4000/get/${id}`)
+        axios.get(`https://hr-systema.onrender.com/get/${id}`)
         .then(res => {
             if(res.data.Status === 'Success') {
                 setUpdateData({

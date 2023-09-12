@@ -31,7 +31,7 @@ export const Header = ({ menu, setMenu }) => {
     }
 
     const handleLogOut = () => {
-        axios.get('http://localhost:4000/logout')
+        axios.get('https://hr-systema.onrender.com/logout')
         .then(res => {
             navigate('/login')
         })

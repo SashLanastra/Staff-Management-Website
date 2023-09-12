@@ -32,7 +32,7 @@ export const BdayCard = ({ employee, currentDay, currentMonth}) => {
 
     const sendMail = (e) => {
         e.preventDefault();
-        axios.put(`http://localhost:4000/updateisBirthday/${employee.id}`, isBirthday)
+        axios.put(`https://hr-systema.onrender.com/${employee.id}`, isBirthday)
         .then(res => {})
         .catch(err => console.log(err))
 
@@ -57,7 +57,7 @@ export const BdayCard = ({ employee, currentDay, currentMonth}) => {
         <>
             <li className='bg-unicolor flex flex-col items-center gap-2 p-4 mt-4 mb-2 rounded-lg shadow-lg '>
                 <div className='flex gap-8 items-center'>
-                    <img className='emp-img w-16 rounded-full' src={`http://localhost:4000/images/${employee.avatarUrl}`} alt="employee image" />
+                    <img className='emp-img w-16 rounded-full' src={`https://hr-systema.onrender.com/images/${employee.avatarUrl}`} alt="employee image" />
                     <div>
                         <p>{employee.firstName} {employee.lastName}</p>
                         <p>Turning: {currentAges} years</p>

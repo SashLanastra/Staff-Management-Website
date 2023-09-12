@@ -7,7 +7,7 @@ export const DashboardCards = () => {
     const [salaryCount, setSalaryCount] = useState()
 
     useEffect(() => {
-        axios.get('http://localhost:4000/staffcount')
+        axios.get('https://hr-systema.onrender.com/staffcount')
             .then(res => {
                 if (res.data.Status === 'Success') {
                     setStaffCount(res.data.Result[0].staff)
@@ -17,7 +17,7 @@ export const DashboardCards = () => {
             })
             .catch(err => console.log(err))
 
-        axios.get('http://localhost:4000/admincount')
+        axios.get('https://hr-systema.onrender.com/admincount')
         .then(res => {
             if(res.data.Status === 'Success') {
                 setAdminCount(res.data.Result[0].admin)
@@ -27,7 +27,7 @@ export const DashboardCards = () => {
         })
         .catch(err => console.log(err))
 
-        axios.get('http://localhost:4000/salarycount')
+        axios.get('https://hr-systema.onrender.com/salarycount')
         .then(res => {
             if(res.data.Status === 'Success') {
                 setSalaryCount(res.data.Result[0].salarycount)

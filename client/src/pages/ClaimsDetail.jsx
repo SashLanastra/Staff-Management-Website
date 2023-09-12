@@ -14,7 +14,7 @@ export const ClaimsDetail = () => {
     useEffect(() => {
         const controller = new AbortController
         const signal = controller.signal
-        axios.get(`http://localhost:4000/getclaims/${id}`, signal)
+        axios.get(`https://hr-systema.onrender.com/getclaims/${id}`, signal)
             .then(res => {
                 if (res.data.Status === 'Success') {
                     setClaimSummary(res.data.Result)
@@ -22,7 +22,7 @@ export const ClaimsDetail = () => {
             })
             .catch(err => console.log(err))
 
-        axios.get(`http://localhost:4000/get/${id}`, signal)
+        axios.get(`https://hr-systema.onrender.com/get/${id}`, signal)
             .then(res => {
                 setClaimeeDetails(res.data.Result[0])
             })
@@ -36,7 +36,7 @@ export const ClaimsDetail = () => {
 
     return (
         <div className='flex flex-col items-center mt-8 mb-8 mx-8 gap-8'>
-            <img src={`http://localhost:4000/images/${claimeeDetails.avatarUrl}`} alt="" className='rounded-full emp-img w-40 sm:w-64' />
+            <img src={`https://hr-systema.onrender.com/images/${claimeeDetails.avatarUrl}`} alt="" className='rounded-full emp-img w-40 sm:w-64' />
             <div className='flex flex-col items-center'>
                 <p className='text-2xl'>{claimeeDetails.firstName} {claimeeDetails.lastName}</p>
                 <p className='text-lg text-primary'>{claimeeDetails.staffCode}</p>
@@ -60,7 +60,7 @@ export const ClaimsDetail = () => {
                                     <td className='px-3 py-2 border-r border-secondary text-center'>R{claim.amount}</td>
                                     <td className='hidden sm:table-cell px-3 py-2 border-r border-secondary text-center'>{claim.date}</td>
                                     <td className=' rounded-br-lg'>
-                                        <a href={`http://localhost:4000/claimages/${claim.proof}`} target='_blank' className='block w-full py-4'>
+                                        <a href={`https://hr-systema.onrender.com/claimages/${claim.proof}`} target='_blank' className='block w-full py-4'>
                                             <img src={file} alt="" className='mx-auto' />
                                         </a>
                                     </td>

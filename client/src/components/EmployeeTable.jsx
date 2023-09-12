@@ -28,7 +28,7 @@ const EmployeeTable = ({ data, setData, handleDelete, handleEmpFetch }) => {
                             >
                                 <td className='p-2'>
                                     <img
-                                        src={`http://localhost:4000/images/${employee.avatarUrl}`}
+                                        src={`https://hr-systema.onrender.com/images/${employee.avatarUrl}`}
                                         alt="Employee Avatar"
                                         className=' border border-primary w-12 emp-img rounded-full mx-auto'
                                     />

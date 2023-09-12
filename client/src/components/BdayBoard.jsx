@@ -8,7 +8,7 @@ import emailjs from '@emailjs/browser';
 export const BdayBoard = () => {
     const [data, setData] = useState([])
     useEffect(() => {
-        axios.get('http://localhost:4000/getemployees')
+        axios.get('https://hr-systema.onrender.com/getemployees')
             .then(res => {
                 if (res.data.Status === 'Success') {
                     setData(res.data.Result)

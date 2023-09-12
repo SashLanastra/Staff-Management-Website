@@ -52,7 +52,7 @@ export const AddEmpForm = () => {
         formdata.append("salary", newEmpData.salary);
         formdata.append("doe", newEmpData.doe);
         formdata.append("avatarUrl", newEmpData.avatarUrl);
-        axios.post('http://localhost:4000/create', formdata)
+        axios.post('https://hr-systema.onrender.com/create', formdata)
         .then(res => {
             console.log(res)
             if(res.data.Status === 'Success') {

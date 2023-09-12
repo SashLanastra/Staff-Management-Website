@@ -24,7 +24,7 @@ export const EmpHeader = ({ menu, setMenu }) => {
 
         document.addEventListener("click", handler);
 
-        axios.get(`http://localhost:4000/get/${id}`, signal)
+        axios.get(`https://hr-systema.onrender.com/get/${id}`, signal)
         .then(res => {
             setEmpImg(res.data.Result[0].avatarUrl)
         })
@@ -42,7 +42,7 @@ export const EmpHeader = ({ menu, setMenu }) => {
     }
 
     const handleLogOut = () => {
-        axios.get('http://localhost:4000/logout')
+        axios.get('https://hr-systema.onrender.com/logout')
         .then(res => {
             navigate('/login')
         })
@@ -60,7 +60,7 @@ export const EmpHeader = ({ menu, setMenu }) => {
                     <img className='w-28 lg:w-52' src={logo} alt="logo" />
                 </Link>
                 <div className='border rounded-full h-fit'>
-                    <img src={`http://localhost:4000/images/${empImg}`} alt="profile image" className='emp-img rounded-full w-14'/>
+                    <img src={`https://hr-systema.onrender.com/images/${empImg}`} alt="profile image" className='emp-img rounded-full w-14'/>
                 </div>
             </div>
             

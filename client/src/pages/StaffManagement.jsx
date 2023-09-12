@@ -27,7 +27,7 @@ export const StaffManagement = () => {
     }
 
     useEffect(() => {
-        axios.get('http://localhost:4000/getemployees')
+        axios.get('https://hr-systema.onrender.com/getemployees')
         .then(res => {
             if(res.data.Status === 'Success') {
                 console.log(res.data.Result)
@@ -41,7 +41,7 @@ export const StaffManagement = () => {
     },[])
 
     const handleDelete = (id) => {
-        axios.delete(`http://localhost:4000/delete/${id}`)
+        axios.delete(`https://hr-systema.onrender.com/delete/${id}`)
         .then(res => {
             if(res.data.Status === 'Success') {
                 window.location.reload(true);

@@ -31,7 +31,7 @@ export const Login = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         if(!userData.isEmployee) {
-            axios.post('http://localhost:4000/login', userData)
+            axios.post('https://hr-systema.onrender.com/login', userData)
             .then(res => {
                 if (res.data.Status === "Success") {
                     navigate('/')
@@ -42,7 +42,7 @@ export const Login = () => {
             })
             .catch(err => console.log(err))
         } else {
-            axios.post('http://localhost:4000/employeelogin', userData)
+            axios.post('https://hr-systema.onrender.com/employeelogin', userData)
             .then(res => {
                 if(res.data.Status === 'Success') {
                     const id = res.data.id

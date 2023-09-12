@@ -9,7 +9,7 @@ export const EmpHome = () => {
     const { id } = useParams()
 
     useEffect(() => {
-        axios.get(`http://localhost:4000/get/${id}`)
+        axios.get(`https://hr-systema.onrender.com/get/${id}`)
         .then(res => {
             setEmployee(res.data.Result[0]);
         })
@@ -18,7 +18,7 @@ export const EmpHome = () => {
     return (
         <div className='mt-8 flex flex-col items-center gap-8'>
             <img 
-                src={`http://localhost:4000/images/${employee.avatarUrl}`} 
+                src={`https://hr-systema.onrender.com/images/${employee.avatarUrl}`} 
                 alt="Employee Avatar"
                 className=' border border-primary w-52 emp-img rounded-full'
             />

@@ -9,7 +9,7 @@ const Dashboard = () => {
     useEffect(() => {
         const controller = new AbortController;
         const signal = controller.signal
-        axios.get('http://localhost:4000/dashboard', signal)
+        axios.get('https://hr-systema.onrender.com/dashboard', signal)
         .then(res => {
             if(res.data.Status === 'Success') {
                 if( res.data.role === "admin") {

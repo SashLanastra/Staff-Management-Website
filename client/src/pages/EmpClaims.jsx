@@ -10,7 +10,7 @@ export const EmpClaims = () => {
     useEffect(() => {
         const controller = new AbortController();
         const signal = controller.signal
-        axios.get('http://localhost:4000/getclaims', {signal})
+        axios.get('https://hr-systema.onrender.com/getclaims', {signal})
             .then(res => {
                 if (res.data.Status === 'Success') {
                     setClaims(res.data.Result)
