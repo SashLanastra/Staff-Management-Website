@@ -11,7 +11,7 @@ import 'dotenv/config'
 const app = express();
 app.use(cors(
     {
-        origin: "https://hrsystema.netlify.app",
+        origin: "https://main--hrsystema.netlify.app",
         methods: ["POST", "GET", "PUT", "DELETE"],
         credentials: true
     }
