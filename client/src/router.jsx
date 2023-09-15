@@ -12,6 +12,7 @@ import { EmpMainLayout } from "./Layouts/EmpMainLayout";
 import { EmpClaims } from "./pages/EmpClaims";
 import { ClaimsDetail } from "./pages/ClaimsDetail";
 import { Home } from "./pages/Home";
+import { HomeLayout } from "./Layouts/HomeLayout";
 
 
 
@@ -23,9 +24,14 @@ export const router = createBrowserRouter([
         ]
     },
     {
+        element: <HomeLayout/>,
+        children: [
+            {path: "", element: <Home/>}
+        ]
+    },
+    {
         element: <MainLayout />,
         children: [
-            {path: "", element: <Home/>},
             {path: "dashboard", element: <Dashboard/>},
             {path: "/adminhome", element: <StaffManagement/>},
             {path: "birthdays", element: <Birthdays/>},
