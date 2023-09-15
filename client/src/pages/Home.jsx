@@ -24,6 +24,8 @@ export const Home = () => {
         .catch(err => console.log(err))
     },[])
   return (
-    <div>Home</div>
+    <>
+        <img src={logo} alt="Company Logo" className='w-1/4'/>
+    </>
   )
 }
