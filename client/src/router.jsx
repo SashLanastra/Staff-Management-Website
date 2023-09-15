@@ -11,6 +11,7 @@ import { EmpHome } from "./pages/Employee/EmpHome";
 import { EmpMainLayout } from "./Layouts/EmpMainLayout";
 import { EmpClaims } from "./pages/EmpClaims";
 import { ClaimsDetail } from "./pages/ClaimsDetail";
+import { Home } from "./pages/Home";
 
 
 
@@ -24,8 +25,9 @@ export const router = createBrowserRouter([
     {
         element: <MainLayout />,
         children: [
+            {path: "", element: <Home/>},
             {path: "dashboard", element: <Dashboard/>},
-            {path: "/", element: <StaffManagement/>},
+            {path: "/adminhome", element: <StaffManagement/>},
             {path: "birthdays", element: <Birthdays/>},
             {path: "employeeclaims", element: <EmpClaims/>},
             {path: "staffdetails/:id", element: <StaffDetails/>},

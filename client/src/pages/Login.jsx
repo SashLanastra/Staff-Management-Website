@@ -34,7 +34,7 @@ export const Login = () => {
             axios.post('https://hr-systema.onrender.com/login', userData)
             .then(res => {
                 if (res.data.Status === "Success") {
-                    navigate('/')
+                    navigate('/adminhome')
                     console.log(res)
                 } else {
                     return setError(res.data.Error)

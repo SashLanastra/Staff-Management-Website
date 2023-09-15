@@ -17,8 +17,6 @@ export const StaffManagement = () => {
     const{form, formTrue} = useForm()
     const { updateForm } = useUpdateForm()
 
-    const navigate = useNavigate()
-
     const filteredItems = useMemo(() => {
         return data.filter(item => {
             return item.firstName.toLowerCase().includes(query.toLowerCase())
@@ -28,23 +26,6 @@ export const StaffManagement = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
     }
-
-    axios.defaults.withCredentials = true;
-    useEffect(() => {
-        axios.get('https://hr-systema.onrender.com/homepage')
-        .then(res => {
-            if(res.data.Status === 'Success' && res.data.role === "admin") {
-                navigate('/')
-                // } else if(res.data.role === "employee") {
-                //     const id = res.data.id;
-                //     navigate(`/employeehome/${id}`)
-                // }
-            } else {
-                navigate('/login')
-            }
-        })
-        .catch(err => console.log(err))
-    },[])
 
     useEffect(() => {
         axios.get('https://hr-systema.onrender.com/getemployees')
