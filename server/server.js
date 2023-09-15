@@ -1,4 +1,4 @@
-import express from "express";
+import express, { response } from "express";
 import mysql from "mysql";
 import cors from "cors";
 import cookieParser from "cookie-parser";
@@ -11,7 +11,7 @@ import 'dotenv/config'
 const app = express();
 app.use(cors(
     {
-        origin: "https://sash-hr-systema.netlify.app",
+        origin: ["https://sash-hr-systema.netlify.app/"],
         methods: ["POST", "GET", "PUT", "DELETE"],
         credentials: true
     }
@@ -84,17 +84,26 @@ app.get('/getclaims', (req, res) => {
 })
 
 app.get('/getclaims/:id', (req, res) => {
-    const id = req.params.id
-    const sql = "SELECT * from claims WHERE employeeId = ?"
+    const id = req.params.id;
+    const sql = "SELECT * FROM claims WHERE employeeId = ?"
     con.query(sql, [id], (err, result) => {
         if(err) return res.json({Error: "Error in fetching employee claims"})
         return res.json({Status: "Success", Result:result})
     })
 })
 
+app.put('/updateclaim/:id', (req, res) => {
+    const id = req.params.id;
+    const sql = "UPDATE claims SET paid = NOT paid WHERE employeeId = ?";
+    con.query(sql, [id], (err, result) => {
+        if (err) return res.json({ Error: "Error in updating claim" })
+        return res.json({ Status: "Success", Result: result })
+    })
+})
+
 app.get('/get/:id', (req, res) => {
     const id = req.params.id;
-    const sql = "SELECT * FROM employees where id = ?";
+    const sql = "SELECT * FROM employees WHERE id = ?";
     con.query(sql, [id], (err, result) => {
         if (err) return res.json({ Error: "Error in getting employee from sql" })
         return res.json({ Status: "Success", Result: result })
@@ -142,7 +151,7 @@ const verifyUser = (req, res, next) => {
     }
 }
 
-app.get('/dashboard', verifyUser, (req, res) => {
+app.get('/homepage', verifyUser, (req, res) => {
     return res.json({ Status: "Success", role: req.role, id: req.id })
 })
 
@@ -246,13 +255,17 @@ app.post('/create', upload.single('avatarUrl'), (req, res) => {
 })
 
 app.post('/createClaim', claimupload.single('proof'), (req, res) => {
-    const sql = "INSERT INTO claims( `employeeId`, `details`, `amount`, `date`, `proof`) VALUES(?) ";
+    const sql = "INSERT INTO claims( `employeeId`, `staffCode`, `firstName`, `lastName`, `details`, `amount`, `date`, `proof`, `avatarUrl`) VALUES(?) ";
     const values = [
         req.body.employeeId, 
+        req.body.staffCode, 
+        req.body.firstName, 
+        req.body.lastName, 
         req.body.details,
         req.body.amount, 
         req.body.date, 
         req.file.filename,
+        req.body.avatarUrl,
     ]
     console.log(values)
     con.query(sql, [values], (err, result) => {
