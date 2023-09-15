@@ -9,7 +9,6 @@ import { Birthdays } from "./pages/Birthdays";
 import { StaffDetails } from "./pages/StaffDetails";
 import { EmpHome } from "./pages/Employee/EmpHome";
 import { EmpMainLayout } from "./Layouts/EmpMainLayout";
-import { Leave } from "./pages/Employee/Leave";
 import { EmpClaims } from "./pages/EmpClaims";
 import { ClaimsDetail } from "./pages/ClaimsDetail";
 
@@ -37,7 +36,6 @@ export const router = createBrowserRouter([
         element: <EmpMainLayout/>,
         children: [
             {path: "employeehome/:id", element: <EmpHome/>},
-            {path: "leave/:id", element: <Leave/>},
             {path: "claims/:id", element: <Claims/>},
         ]
     }
