@@ -59,7 +59,7 @@ export const Header = ({ menu, setMenu }) => {
                     <nav className='flex flex-col w-fit min-h-screen flex-grow overflow-y-hidden backdrop-blur-lg shadow-2xl popup-nav'>
                         <ul className='w-fit text-white'>
                             <li onClick={() => setMenu(false)}>
-                                <Link to=''>Staff</Link>
+                                <Link to='adminhome'>Staff</Link>
                             </li>
                             <li onClick={() => setMenu(false)}>
                                 <Link to='birthdays'>Birthdays</Link>
@@ -68,7 +68,7 @@ export const Header = ({ menu, setMenu }) => {
                                 <Link to='employeeclaims'>Employee Claims</Link>
                             </li>
                             <li onClick={() => setMenu(false)}>
-                                <Link to='/dashboard'>Dashboard</Link>
+                                <Link to='dashboard'>Dashboard</Link>
                             </li>
                             <li onClick={handleLogOut}
                                 className='px-8 py-2 cursor-pointer hover:bg-secondary hover:text-opaqueblack'

@@ -19,7 +19,7 @@ const SideBar = () => {
                 <Link to=''><img className='lg:w-36 mx-auto' src={logo} alt="logo" /></Link>
                 <ul className='w-52'>
                     <li className=''>
-                        <Link to=''>Staff</Link>
+                        <Link to='adminhome'>Staff</Link>
                     </li>
                     <li className=''>
                         <Link to='birthdays'>Birthdays</Link>
