@@ -53,7 +53,7 @@ export const Claims = () => {
         formData.append("date", claimInfo.date);
         formData.append("proof", claimInfo.proof);
         formData.append("avatarUrl", claimInfo.avatarUrl);
-        axios.post('hhttps://hr-systema.onrender.com/createClaim', formData)
+        axios.post('https://hr-systema.onrender.com/createClaim', formData)
         .then(res => {
             if(res.data.Status === 'Success') {
                 alert('Claim has been sent');
