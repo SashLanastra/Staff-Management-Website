@@ -3,7 +3,7 @@ import { Button } from './Button'
 import { Link } from 'react-router-dom'
 import { useUpdateForm } from '../Hooks/useUpdateForm'
 
-const EmployeeTable = ({ data, setData, handleDelete, handleEmpFetch }) => {
+const EmployeeTable = ({ filteredItems, handleDelete }) => {
     const { updateFormTrue } =useUpdateForm()
     return (
             <table className='hidden xl:table h-fit mt-8 mx-8 rounded-lg border-collapse'>
@@ -20,7 +20,7 @@ const EmployeeTable = ({ data, setData, handleDelete, handleEmpFetch }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map((employee, index) => {
+                    {filteredItems.map((employee, index) => {
                         return (
                             <tr 
                                 key={index}

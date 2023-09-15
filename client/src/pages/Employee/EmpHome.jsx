@@ -1,12 +1,28 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { EmpDetails } from '../../empComponents/EmpDetails'
 
 export const EmpHome = () => {
     const [employee, setEmployee] = useState([])
 
     const { id } = useParams()
+    const navigate = useNavigate()
+
+    axios.defaults.withCredentials = true;
+
+    useEffect(() => {
+        axios.get('https://hr-systema.onrender.com/homepage')
+        .then(res => {
+            if(res.data.Status === "Success" && res.data.role === "employee") {
+                const employeeId = res.data.id;
+                navigate(`/employeehome/${employeeId}`)
+            } else {
+                navigate('/login')
+            }
+        })
+        .catch(err => console.log(err))
+    },[])
 
     useEffect(() => {
         axios.get(`https://hr-systema.onrender.com/get/${id}`)

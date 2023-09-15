@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import logo from '../assets/logo.svg'
 import menuIcon from '../assets/Menu Icon.svg'
-import profile from '../assets/Profile.svg'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import vector from '../assets/Vector.svg'
 import file from '../assets/FileVector.svg'
 import { Button } from '../components/Button'
@@ -10,28 +10,38 @@ export const ClaimsDetail = () => {
     const [claimeeDetails, setClaimeeDetails] = useState('')
 
     const { id } = useParams()
+    const navigate = useNavigate()
 
     useEffect(() => {
-        const controller = new AbortController
-        const signal = controller.signal
-        axios.get(`https://hr-systema.onrender.com/getclaims/${id}`, signal)
+        axios.get(`https://hr-systema.onrender.com/getclaims/${id}`)
             .then(res => {
-                if (res.data.Status === 'Success') {
+                if(res.data.Status === "Success") {
+                    console.log(res.data.Result[0].amount)
                     setClaimSummary(res.data.Result)
+                    const setEmpDetails = () => {
+                        setClaimeeDetails({
+                            ...claimeeDetails,
+                            avatarUrl: res.data.Result[0].avatarUrl,
+                            firstName: res.data.Result[0].firstName,
+                            lastName: res.data.Result[0].lastName,
+                            staffCode: res.data.Result[0].staffCode
+                        })
+                    }
+                    setEmpDetails()
                 }
             })
             .catch(err => console.log(err))
-
-        axios.get(`https://hr-systema.onrender.com/get/${id}`, signal)
-            .then(res => {
-                setClaimeeDetails(res.data.Result[0])
-            })
-            .catch(err => console.log(err))
-
-        return () => {
-            controller.abort()
-        }
     }, [])
+
+    const handPaidClaims = () => {
+        axios.put(`https://hr-systema.onrender.com/updateclaim/${id}`)
+        .then(res => {
+            if(res.data.Status === "Success") {
+                navigate('/employeeclaims')
+            } else { alert('Error')}
+        })
+        .catch(err => console.log(err))
+    }
 
 
     return (
@@ -41,7 +51,10 @@ export const ClaimsDetail = () => {
                 <p className='text-2xl'>{claimeeDetails.firstName} {claimeeDetails.lastName}</p>
                 <p className='text-lg text-primary'>{claimeeDetails.staffCode}</p>
             </div>
-            <Button className='bg-secondary w-full max-w-sm sm:max-w-2xl'>Mark All As Paid</Button>
+            <Button 
+                className='bg-secondary w-full max-w-sm sm:max-w-2xl'
+                onClick={handPaidClaims}
+            >Mark All As Paid</Button>
             <div className='border rounded-lg border-secondary shadow-lg w-full max-w-2xl'>
                 <table className='w-full'>
                     <thead>

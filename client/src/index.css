@@ -53,6 +53,13 @@ body {
     font-weight: bold;
 }
 
+.sidebar-nav ul li:hover,
+.sidebar-nav ul li:focus {
+    background-color: #C4B0A3;
+    color: rgba(0, 0, 0, 0.692);
+    font-weight: bold;
+}
+
  /*-------popupsidebar--------*/
 .popup-nav ul li a{
     padding: .5rem 2rem;

@@ -1,17 +1,18 @@
 import axios from 'axios'
 import React, { useEffect, useMemo, useState } from 'react'
-import { Button } from '../components/Button'
-import { ClaimIndentifier } from '../components/ClaimIndentifier'
-import { FormInput } from '../components/FormInput'
+import { ClaimIdentifier } from '../components/ClaimIdentifier'
+import { Searchbar } from '../components/Searchbar'
 
 export const EmpClaims = () => {
     const [claims, setClaims] = useState([])
+    const [ query, setQuery ] = useState('')
 
     useEffect(() => {
         const controller = new AbortController();
         const signal = controller.signal
         axios.get('https://hr-systema.onrender.com/getclaims', {signal})
             .then(res => {
+                console.log(res)
                 if (res.data.Status === 'Success') {
                     setClaims(res.data.Result)
                 }
@@ -21,11 +22,13 @@ export const EmpClaims = () => {
         return () => {
             controller.abort()
         }
-
     }, [])
 
-    console.log(claims)
-
+    const filteredItems = useMemo(() => {
+        return claims.filter(item => {
+            return item.lastName.toLowerCase().includes(query.toLowerCase())
+        })
+    },[claims, query])
     // const filteredItems = useMemo(() => {
     //     return claims.filter(item => {
     //         return item.firstName
@@ -35,13 +38,14 @@ export const EmpClaims = () => {
     return (
         <section className='flex flex-col gap-8 max-w-4xl mx-auto'>
             <div className='flex flex-col gap-8 mt-8 sm:mt-24 mx-8'>
-                
-                <FormInput 
-                    className='bg-white border-none'
-                    placeholder='Search Employee Claim. . .'
+                <Searchbar 
+                    type='text'
+                    placeholder='Search Claim By Employee Name. . .'
+                    onChange={e => setQuery(e.target.value)}
+                    
                 />
             </div>
-            <div className='border border-secondary rounded-lg shadow-lg mx-8'>
+            {claims.length ? <div className='border border-secondary rounded-lg shadow-lg mx-8'>
                 <table className='w-full'>
                     <thead>
                         <tr>
@@ -57,11 +61,11 @@ export const EmpClaims = () => {
                         </tr>
                     </thead>
                     <tbody className=''>
-                        {claims.map((singleclaim, index) => {
+                        {filteredItems.map((singleclaim, index) => {
                             return (
-                                <tr key={index} className='border-b border-secondary'>
+                                !singleclaim.paid && <tr key={index} className='border-b border-secondary'>
                                     <td className='py-2 border-r border-secondary'>
-                                        <ClaimIndentifier singleclaim={singleclaim} />
+                                        <ClaimIdentifier singleclaim={singleclaim} />
                                     </td>
                                     <td className='hidden lg:table-cell border-r text-center border-secondary'>
                                         {singleclaim.date}
@@ -74,7 +78,7 @@ export const EmpClaims = () => {
                         })}
                     </tbody>
                 </table>
-            </div>
+            </div> : <p className='text-center font-bold text-xl'>There are no claims</p>}
         </section>
     )
 }

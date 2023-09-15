@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Button } from '../../components/Button';
 import { FormInput } from '../../components/FormInput';
@@ -16,6 +16,22 @@ export const Claims = () => {
         proof: ''
     })
 
+    useEffect(() => {
+        axios.get(`https://hr-systema.onrender.com/get/${id}`)
+        .then(res => {
+            if(res.data.Status === "Success") {
+                setClaimInfo({
+                    ...claimInfo,
+                    staffCode: res.data.Result[0].staffCode,
+                    firstName: res.data.Result[0].firstName,
+                    lastName: res.data.Result[0].lastName,
+                    avatarUrl: res.data.Result[0].avatarUrl
+                })
+            }
+        })
+        .catch(err => console.log(err))
+    },[])
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setClaimInfo({
@@ -29,11 +45,15 @@ export const Claims = () => {
         e.preventDefault();
         const formData = new FormData();
         formData.append("employeeId", claimInfo.employeeId);
+        formData.append("staffCode", claimInfo.staffCode);
+        formData.append("firstName", claimInfo.firstName);
+        formData.append("lastName", claimInfo.lastName);
         formData.append("details", claimInfo.details);
         formData.append("amount", claimInfo.amount);
         formData.append("date", claimInfo.date);
         formData.append("proof", claimInfo.proof);
-        axios.post('https://hr-systema.onrender.com/createClaim', formData)
+        formData.append("avatarUrl", claimInfo.avatarUrl);
+        axios.post('hhttps://hr-systema.onrender.com/createClaim', formData)
         .then(res => {
             if(res.data.Status === 'Success') {
                 alert('Claim has been sent');

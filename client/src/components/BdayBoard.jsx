@@ -1,9 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { BdayCard } from './BdayCard'
 import axios from 'axios'
-import emailjs from '@emailjs/browser';
-
-
 
 export const BdayBoard = () => {
     const [data, setData] = useState([])
@@ -44,8 +41,8 @@ export const BdayBoard = () => {
         <>
             <div className='flex flex-col gap-4 items-center'>
                 <h1 className='text-4xl'>Birthday Board</h1>
-                <h3 className='text-xl font-semibold'>Today's Birthdays</h3>
-                <ul>
+                {currentBday.length ? <h3 className='text-xl font-semibold'>Today's Birthdays</h3> : null}
+                {currentBday.length ? <ul>
                     {currentBday.map((employee, index) => {
                         return ( 
                             <BdayCard
@@ -58,7 +55,7 @@ export const BdayBoard = () => {
                            
                         )
                     })}
-                </ul>
+                </ul> : <p className='text-2xl text-opaqueblack'>Zero Birthdays Today</p>}
                 <h3 className='text-xl font-semibold'>Upcoming Birthdays</h3>
                 <ul>
                     {upcomingBday.map((employee, index) => {

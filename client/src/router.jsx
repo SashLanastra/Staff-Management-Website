@@ -25,8 +25,8 @@ export const router = createBrowserRouter([
     {
         element: <MainLayout />,
         children: [
-            {path: "", element: <Dashboard/>},
-            {path: "staff", element: <StaffManagement/>},
+            {path: "dashboard", element: <Dashboard/>},
+            {path: "/", element: <StaffManagement/>},
             {path: "birthdays", element: <Birthdays/>},
             {path: "employeeclaims", element: <EmpClaims/>},
             {path: "staffdetails/:id", element: <StaffDetails/>},
