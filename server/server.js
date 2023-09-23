@@ -31,7 +31,7 @@ const con = mysql.createConnection({
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, '../server/images')
+        cb(null, '../client/src/assets')
     },
     filename: (req, file, cb) => {
         cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname));
@@ -40,7 +40,7 @@ const storage = multer.diskStorage({
 
 const claimstorage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, '../server/claimages')
+        cb(null, '../client/src/assets')
     },
     filename: (req, file, cb) => {
         cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname));
