@@ -28,7 +28,7 @@ const EmployeeTable = ({ filteredItems, handleDelete }) => {
                             >
                                 <td className='p-2'>
                                     <img
-                                        src={`..client/src/assets/${employee.avatarUrl}`}
+                                        src={`https://hr-systema.onrender.com/images/${employee.avatarUrl}`}
                                         alt="Employee Avatar"
                                         className=' border border-primary w-12 emp-img rounded-full mx-auto'
                                     />
