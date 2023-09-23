@@ -86,7 +86,7 @@ export const StaffManagement = () => {
                 })}
             </div> 
             <EmployeeTable filteredItems={filteredItems} handleDelete={handleDelete} /> 
-            {!data.length && <p className='p-20 text-xl font-bold'>You Have 0 Employees</p>}
+            {!data.length && <p className='p-20 text-xl font-bold'>You Have Zero Employees</p>}
         </section>
     )
 }
